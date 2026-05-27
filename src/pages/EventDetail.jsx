@@ -79,8 +79,11 @@ export default function EventDetail({ event, onUpdate, addToast }) {
       return;
     }
 
+    const wasUnfinished = ev.status === "unfinished";
+
     push({
       ...ev,
+      status: wasUnfinished ? "in_progress" : ev.status,
       categories: {
         ...ev.categories,
         [activeTab]: {
@@ -99,6 +102,7 @@ export default function EventDetail({ event, onUpdate, addToast }) {
       },
     });
     addToast(`"${newItem.name}" added`);
+    if (wasUnfinished) addToast("Status updated to In Progress", "info");
     setNewItem({ name: "", vendor: "", cost: "" });
     setItemErrors({});
     setAddingItem(false);
@@ -212,6 +216,15 @@ export default function EventDetail({ event, onUpdate, addToast }) {
                 <Icon name="edit" size={13} color={C.text} />
                 Edit Details
               </Btn>
+              {ev.status !== "completed" && (
+                <Btn
+                  onClick={() => { changeStatus("completed"); }}
+                  style={{ background: "#0B7A6E", border: "none", color: "#fff", boxShadow: "0 2px 8px rgba(11,122,110,0.3)" }}
+                >
+                  <Icon name="completed" size={14} color="#fff" />
+                  Mark as Completed
+                </Btn>
+              )}
             </div>
           </>
         )}

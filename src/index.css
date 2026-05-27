@@ -290,12 +290,12 @@ select:focus-visible {
 }
 
 .logout-button {
-  color: rgba(238, 242, 248, 0.76);
+  color: #FF4444;
 }
 
 .logout-button:hover {
-  color: #ffffff;
-  background: rgba(217, 95, 79, 0.18);
+  color: #FF2222;
+  background: rgba(255, 68, 68, 0.15);
 }
 
 .app-main {
@@ -997,10 +997,9 @@ select:focus-visible {
 .item-row {
   padding: 14px 16px;
   border-bottom: 1px solid var(--border-soft);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
-  gap: 14px;
+  display: flex;
   align-items: center;
+  gap: 12px;
 }
 
 .item-row:last-child {
@@ -1009,6 +1008,41 @@ select:focus-visible {
 
 .item-row:hover {
   background: #fbfcfe;
+}
+
+.item-row-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.item-action-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.item-action-btn:hover {
+  background: var(--bg);
+  border-color: var(--navy);
+}
+
+.item-action-btn.danger:hover {
+  background: var(--danger-light);
+  border-color: var(--danger);
 }
 
 .item-name {
